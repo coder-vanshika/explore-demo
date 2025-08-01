@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <title>Delight Ice Cream – Auth</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root {
+      --bg: #fafafa; --fg: #333;
+      --nav-bg: #ff9caf; --nav-hover: #ff7f9e;
+      --card: #fff;
+    }
+    [data-theme="dark"] {
+      --bg: #1e1e1e; --fg: #f0f0f0;
+      --nav-bg: #333; --nav-hover: #555;
+      --card: #2a2a2a;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: Verdana, sans-serif;
+      background: var(--bg); color: var(--fg);
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh;
+    }
+    .auth-container {
+      position: relative; width: 350px; background: var(--card);
+      border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .switcher {
+      display: flex;
+      width: 200%;
+      transition: transform 0.4s ease-in-out;
+    }
+    .form-panel {
+      width: 50%;
+      padding: 40px;
+    }
+    h2 { margin-bottom: 20px; text-align: center; }
+    label { display:block; margin:10px 0 5px; font-size:.9rem; }
+    input {
+      width:100%; padding:10px; border:1px solid #ccc;
+      border-radius:4px;
+    }
+    button {
+      width:100%; margin-top:20px;
+      padding:12px; border:none;
+      background:#ff7f9e; color:#fff;
+      font-size:1rem; border-radius:4px; cursor:pointer;
+      transition: background .2s;
+    }
+    button:hover { background:#ff5c7e; }
+    .toggle {
+      position:absolute; top:10px; right:10px;
+      display:flex; align-items:center; gap:6px;
+    }
+    .switch {
+      position: relative; width:40px; height:20px;
+    }
+    .switch input { opacity:0; width:0; height:0; }
+    .slider {
+      position:absolute; inset:0; background:#ccc;
+      border-radius:20px; transition:0.4s;
+    }
+    .slider::before {
+      content:""; position:absolute; width:16px; height:16px;
+      left:2px; bottom:2px; background:white;
+      border-radius:50%; transition:0.4s;
+    }
+    input:checked + .slider { background:#4CAF50; }
+    input:checked + .slider::before { transform:translateX(20px); }
+    .auth-toggle {
+      margin-top: 12px;
+      text-align: center;
+    }
+    .auth-toggle a {
+      color: #ff7f9e; text-decoration: none; font-size: .9rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="auth-container">
+  <div class="toggle">
+    <label class="switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="slider"></span>
+    </label>
+    <span>Dark Mode</span>
+  </div>
+
+  <div class="switcher" id="switcher">
+    <!-- Login -->
+    <div class="form-panel" id="loginPanel">
+      <h2>Login</h2>
+      <form>
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com" required>
+        <label>Password</label>
+        <input type="password" placeholder="••••••••" required>
+        <button type="submit">Login</button>
+        <div class="auth-toggle">
+          <a href="#" id="toSignup">Don't have an account? Sign up</a>
+        </div>
+      </form>
+    </div>
+    <!-- Sign Up -->
+    <div class="form-panel" id="signupPanel">
+      <h2>Sign Up</h2>
+      <form>
+        <label>Name</label>
+        <input type="text" placeholder="Your name" required>
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com" required>
+        <label>Password</label>
+        <input type="password" placeholder="••••••••" required>
+        <button type="submit">Sign Up</button>
+        <div class="auth-toggle">
+          <a href="#" id="toLogin">Already have an account? Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  const switcher = document.getElementById('switcher');
+  document.getElementById('toSignup').onclick = e => {
+    e.preventDefault();
+    switcher.style.transform = 'translateX(-50%)';
+  };
+  document.getElementById('toLogin').onclick = e => {
+    e.preventDefault();
+    switcher.style.transform = 'translateX(0)';
+  };
+
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('change', () => {
+    document.documentElement.setAttribute(
+      'data-theme',
+      themeToggle.checked ? 'dark' : 'light'
+    );
+  });
+</script>
+</body>
+</html>
+

@@ -1,0 +1,70 @@
+body {
+  font-family: Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--bg-color, #fafafa);
+  color: var(--text-color, #333);
+}
+header {
+  background: #ff7f9e;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.order-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+.field {
+  margin-bottom: 1rem;
+}
+.field label {
+  display: block;
+  margin-bottom: .5rem;
+}
+.field input, .field select {
+  width: 100%;
+  padding: .6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.quantity {
+  max-width: 150px;
+}
+button {
+  display: block;
+  width: 100%;
+  padding: .8rem;
+  background: #ff7f9e;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .3s;
+  
+}
+a{
+
+  text-decoration: none;
+}
+button:hover {
+  background: #ff5c7e;
+}
+.confirmation {
+  text-align: center;
+  margin-top: 2rem;
+}
+.hidden {
+  display: none;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+  .order-container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+}
